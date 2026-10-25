@@ -1,0 +1,22 @@
+# /etc/systemd/retail-catalog.service
+
+[Unit]
+Description=Retail Store - Catalog service (Go/Gin)
+After=network-online.target mariadb.service
+Requires=mariadb.service
+
+[Service]
+Type=simple
+User=retail
+Group=retail
+EnvironmentFile=/etc/retail-store/catalog.env
+WorkingDirectory=/opt/retail-store/catalog
+ExecStart=/opt/retail-store/catalog/catalog
+Restart=on-failure
+RestartSec=5
+SyslogIdentifier=retail-catalog
+NoNewPrivileges=yes
+
+
+[Install]
+WantedBy=multi-user.target

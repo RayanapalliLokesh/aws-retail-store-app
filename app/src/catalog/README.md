@@ -15,7 +15,7 @@ The following environment variables are available for configuring the service:
 | PORT                                       | The port which the server will listen on                        | `8080`         |
 | RETAIL_CATALOG_PERSISTENCE_PROVIDER        | The persistence provider to use, can be `in-memory` or `mysql`. | `in-memory`    |
 | RETAIL_CATALOG_PERSISTENCE_ENDPOINT        | Database endpoint URL                                           | `""`           |
-| RETAIL_CATALOG_PERSISTENCE_DB_NAME         | Database name                                                   | `catalogdb`    |
+| RETAIL_CATALOG_PERSISTENCE_DB_NAME         | Database name                                                   | `catalog_db`   |
 | RETAIL_CATALOG_PERSISTENCE_USER            | Database user                                                   | `catalog_user` |
 | RETAIL_CATALOG_PERSISTENCE_PASSWORD        | Database password                                               | `""`           |
 | RETAIL_CATALOG_PERSISTENCE_CONNECT_TIMEOUT | Database connection timeout in seconds                          | `5`            |

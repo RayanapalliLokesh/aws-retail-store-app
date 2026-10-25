@@ -41,7 +41,7 @@ services:
       - reschedule=on-node-failure
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
-      - MYSQL_DATABASE=catalogdb
+      - MYSQL_DATABASE=catalog_db
       - MYSQL_USER=catalog_user
       - MYSQL_PASSWORD=${DB_PASSWORD}
     healthcheck:
