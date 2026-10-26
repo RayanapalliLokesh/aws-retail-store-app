@@ -2,6 +2,7 @@
 
 # scripts/deploy-catalog.sh - install the Catalog binary, env file and systemd unit (run with sudo).
 # Prerequisites: Go build done (app/bin/catalog) and MariaDB set up (Task 4, Step B2-B3).
+
 set -euo pipefail
 [[ $EUID -eq 0 ]] || { echo "run as root: sudo $0" >&2; exit 1; }
 
