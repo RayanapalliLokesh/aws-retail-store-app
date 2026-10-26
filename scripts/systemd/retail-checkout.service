@@ -1,0 +1,21 @@
+# /etc/systemd/system/retail-checkout.service
+
+[Unit]
+Description=Retail Store - Checkout service (Node.js/NestJS)
+After=network-online.target redis-server.service
+Wants=redis-server.service
+
+[Service]
+Type=simple
+User=retail
+Group=retail
+EnvironmentFile=/etc/retail-store/checkout.env
+WorkingDirectory=/opt/retail-store/checkout
+ExecStart=/usr/local/bin/node dist/main.js
+Restart=on-failure
+RestartSec=5
+SyslogIdentifier=retail-checkout
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=multi-user.target

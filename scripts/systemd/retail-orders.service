@@ -1,0 +1,24 @@
+# /etc/systemd/system/retail-orders.service
+
+[Unit]
+Description=Retail Store - Orders service (Java/Spring Boot)
+After=network-online.target postgresql.service rabbitmq-server.service
+Wants=postgresql.service rabbitmq-server.service
+
+[Service]
+Type=simple
+User=retail
+Group=retail
+EnvironmentFile=/etc/retail-store/orders.env
+WorkingDirectory=/opt/retail-store/orders
+
+# $JAVA_OPTS comes from the env file (heap limit); Spring reads PORT and RETAIL_* from the environment
+ExecStart=/usr/bin/java $JAVA_OPTS -jar /opt/retail-store/orders/app.jar
+SuccessExitStatus=143
+Restart=on-failure
+RestartSec=5
+SyslogIdentifier=retail-orders
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=multi-user.target

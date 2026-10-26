@@ -1,0 +1,15 @@
+# /etc/systemd/system/dynamodb-local.service
+
+[Unit]
+Description=Amazon DynamoDB Local (Cart datastore)
+After=network-online.target
+
+[Service]
+User=dynamodb
+WorkingDirectory=/opt/dynamodb-local
+ExecStart=/usr/bin/java -Xmx256m -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb -
+dbPath /opt/dynamodb-local -port 8000
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

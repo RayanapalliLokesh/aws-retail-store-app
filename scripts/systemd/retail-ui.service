@@ -1,0 +1,24 @@
+# /etc/systemd/system/retail-ui.service
+
+[Unit]
+Description=Retail Store - UI service (Java/Spring Boot)
+After=network-online.target retail-catalog.service retail-cart.service retail-checkout.service retailorders.service
+Wants=retail-catalog.service retail-cart.service retail-checkout.service retail-orders.service
+
+[Service]
+Type=simple
+User=retail
+Group=retail
+EnvironmentFile=/etc/retail-store/ui.env
+WorkingDirectory=/opt/retail-store/ui
+
+# $JAVA_OPTS comes from the env file (heap limit); Spring reads PORT and RETAIL_* from the environment
+ExecStart=/usr/bin/java $JAVA_OPTS -jar /opt/retail-store/ui/app.jar
+SuccessExitStatus=143
+Restart=on-failure
+RestartSec=5
+SyslogIdentifier=retail-ui
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=multi-user.target

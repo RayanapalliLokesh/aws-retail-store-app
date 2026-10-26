@@ -1,0 +1,23 @@
+# /etc/systemd/system/retail-cart.service
+
+[Unit]
+Description=Retail Store - Cart service (Java/Spring Boot)
+After=network-online.target dynamodb-local.service
+Wants=dynamodb-local.service
+
+[Service]
+Type=simple
+User=retail
+Group=retail
+EnvironmentFile=/etc/retail-store/cart.env
+WorkingDirectory=/opt/retail-store/cart
+# $JAVA_OPTS comes from the env file (heap limit); Spring reads PORT and RETAIL_* from the environment
+ExecStart=/usr/bin/java $JAVA_OPTS -jar /opt/retail-store/cart/app.jar
+SuccessExitStatus=143
+Restart=on-failure
+RestartSec=5
+SyslogIdentifier=retail-cart
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=multi-user.target
