@@ -2,7 +2,7 @@
 
 [Unit]
 Description=Retail Store - UI service (Java/Spring Boot)
-After=network-online.target retail-catalog.service retail-cart.service retail-checkout.service retailorders.service
+After=network-online.target retail-catalog.service retail-cart.service retail-checkout.service retail-orders.service
 Wants=retail-catalog.service retail-cart.service retail-checkout.service retail-orders.service
 
 [Service]
