@@ -76,6 +76,7 @@ services:
       - RETAIL_CATALOG_PERSISTENCE_PROVIDER=mysql
       - RETAIL_CATALOG_PERSISTENCE_PASSWORD=${DB_PASSWORD}
       - RETAIL_CATALOG_PERSISTENCE_ENDPOINT=catalog-db:3306
+      - RETAIL_CATALOG_PERSISTENCE_DB_NAME=catalog_db
     healthcheck:
       interval: 10s
       retries: 3
