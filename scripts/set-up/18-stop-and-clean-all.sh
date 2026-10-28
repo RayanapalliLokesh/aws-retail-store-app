@@ -55,7 +55,7 @@ sudo rm -rf /usr/local/go ~/go ~/.cache/go-build
 
 echo "8. Removing build outputs (the source code in app/src is kept)..."
 cd ~/aws-retail-store-app
-rm -rf app/bin
+rm -rf app/bin    # staged outputs of all five services: catalog, checkout, cart, orders, ui
 rm -rf app/src/cart/target app/src/orders/target app/src/ui/target
 rm -rf app/src/checkout/dist app/src/checkout/node_modules
 

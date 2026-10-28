@@ -4,10 +4,12 @@ set -e
 # Ensure Go binary path is included in PATH
 export PATH=$PATH:/usr/local/go/bin
 
-# 1. Build the catalog from source
+# 1. Build the catalog from source into app/bin/catalog/
 cd ~/aws-retail-store-app/app/src/catalog
 go mod download
-go build -o ../../bin/catalog .
+rm -rf ../../bin/catalog
+mkdir -p ../../bin/catalog
+go build -o ../../bin/catalog/catalog .
 
 # 2. Return to root repository directory
 cd ~/aws-retail-store-app
@@ -25,7 +27,7 @@ fi
 # 4. Stop a running copy, then install the binary where the unit's ExecStart expects it
 sudo systemctl stop retail-catalog 2>/dev/null || true
 sudo install -d -o retail -g retail -m 755 /opt/retail-store/catalog
-sudo install -o retail -g retail -m 755 app/bin/catalog /opt/retail-store/catalog/catalog
+sudo install -o retail -g retail -m 755 app/bin/catalog/catalog /opt/retail-store/catalog/catalog
 
 # 5. Create config directory and install environment file (readable by the retail group)
 sudo install -d -o root -g retail -m 750 /etc/retail-store

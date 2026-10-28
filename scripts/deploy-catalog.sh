@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # scripts/deploy-catalog.sh - install the Catalog binary, env file and systemd unit (run with sudo).
-# Prerequisites: Go build done (app/bin/catalog) and MariaDB set up (Task 4, Step B2-B3).
+# Prerequisites: Go build done (app/bin/catalog/catalog) and MariaDB set up (Task 4, Step B2-B3).
 
 set -euo pipefail
 [[ $EUID -eq 0 ]] || { echo "run as root: sudo $0" >&2; exit 1; }
@@ -17,8 +17,8 @@ install -d -o root -g retail -m 750 /etc/retail-store
 install -d -o retail -g retail -m 755 /var/log/retail-store
 
 echo "[3/5] binary"
-[[ -x "$REPO/app/bin/catalog" ]] || { echo "build first (Step B4)" >&2; exit 1; }
-install -o retail -g retail -m 755 "$REPO/app/bin/catalog" /opt/retail-store/catalog/catalog
+[[ -x "$REPO/app/bin/catalog/catalog" ]] || { echo "build first (Step B4)" >&2; exit 1; }
+install -o retail -g retail -m 755 "$REPO/app/bin/catalog/catalog" /opt/retail-store/catalog/catalog
 
 echo "[4/5] configuration (root:retail 640 - the service can read it, other users cannot)"
 install -o root -g retail -m 640 "$REPO/scripts/local/catalog.env" /etc/retail-store/catalog.env

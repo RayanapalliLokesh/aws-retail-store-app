@@ -15,17 +15,20 @@ if ! getent passwd retail >/dev/null; then
 fi
 sudo install -d -o root -g retail -m 750 /etc/retail-store
 
-# 3. Build each service, stop the running copy, and install the new jar, env file and unit
+# 3. Build each service, stage its jar as app/bin/<svc>/app.jar, stop the running copy,
+#    and install the new jar, env file and unit
 cd ~/aws-retail-store-app
 for svc in cart orders ui; do
     (cd app/src/$svc && ./mvnw -B -q -DskipTests clean package)
     jar=$(ls app/src/$svc/target/*.jar | grep -v original | head -n 1); echo "$svc -> $jar"
+    mkdir -p app/bin/$svc
+    cp "$jar" app/bin/$svc/app.jar
 
     sudo systemctl stop retail-$svc 2>/dev/null || true
     sudo rm -f /opt/retail-store/$svc/app.jar
 
     sudo install -d -o retail -g retail -m 755 /opt/retail-store/$svc
-    sudo install -o retail -g retail -m 644 "$jar" /opt/retail-store/$svc/app.jar
+    sudo install -o retail -g retail -m 644 app/bin/$svc/app.jar /opt/retail-store/$svc/app.jar
     sudo install -o root -g retail -m 640 scripts/local/$svc.env /etc/retail-store/$svc.env
     sudo install -m 644 scripts/systemd/retail-$svc.service /etc/systemd/system/
 done

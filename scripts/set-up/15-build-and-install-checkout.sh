@@ -9,9 +9,13 @@ if ! getent passwd retail >/dev/null; then
     sudo useradd --system -g retail --home /opt/retail-store --shell /usr/sbin/nologin retail
 fi
 
-# 2. Build the checkout service
+# 2. Build the checkout service and stage dist, package.json and node_modules in app/bin/checkout/
+#    (cp -a keeps the symlinks inside node_modules)
 cd ~/aws-retail-store-app/app/src/checkout
 yarn install --frozen-lockfile && yarn build
+rm -rf ../../bin/checkout
+mkdir -p ../../bin/checkout
+cp -a dist package.json node_modules ../../bin/checkout/
 
 # 3. Create deployment directories with correct ownership and permissions
 cd ~/aws-retail-store-app
@@ -20,7 +24,7 @@ sudo systemctl stop retail-checkout 2>/dev/null || true
 sudo rm -rf /opt/retail-store/checkout/dist /opt/retail-store/checkout/node_modules
 
 # 4. Copy build artifacts and dependencies using consistent paths
-sudo cp -r app/src/checkout/dist app/src/checkout/package.json app/src/checkout/node_modules /opt/retail-store/checkout/
+sudo cp -r app/bin/checkout/dist app/bin/checkout/package.json app/bin/checkout/node_modules /opt/retail-store/checkout/
 sudo chown -R retail:retail /opt/retail-store/checkout
 
 # 5. Create config directory and install environment variables file
