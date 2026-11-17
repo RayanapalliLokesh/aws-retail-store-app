@@ -33,3 +33,4 @@ Every commit of the week adds one row (newest at the bottom).
 | 24 | W2 Incident 03 | incidents/06-ui-catalog-connectivity.md |
 | 25 | W2 Task 8 | docs/network-architecture-v1.md + diagram |
 | 26 | W2 Task 9 | runbooks/application-connectivity.md |
+| 27 | W2 Task 10 | docs/command-notes.md |
