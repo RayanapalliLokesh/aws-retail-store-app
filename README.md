@@ -28,3 +28,4 @@ Every commit of the week adds one row (newest at the bottom).
 | 19 | W2 Incident 02 | incidents/05-local-works-remote-fails.md |
 | 20 | W2 Task 4 | docs/vm-networking.md |
 | 21 | W2 Task 5 | docs/dns-resolution.md |
+| 22 | W2 Task 6 | docs/network-flow-v1.md |
