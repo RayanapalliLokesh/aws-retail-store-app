@@ -13,3 +13,4 @@ Every commit of the week adds one row (newest at the bottom).
 | 4 | W1 Task 1 | docs/application-overview.md |
 | 5 | W1 Task 2 | docs/application-architecture-v1.md + diagram |
 | 6 | W1 Task 3 | docs/request-flows.md |
+| 7 | W1 Task 4 | docs/running-ui-and-catalog.md |
