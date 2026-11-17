@@ -29,3 +29,4 @@ Every commit of the week adds one row (newest at the bottom).
 | 20 | W2 Task 4 | docs/vm-networking.md |
 | 21 | W2 Task 5 | docs/dns-resolution.md |
 | 22 | W2 Task 6 | docs/network-flow-v1.md |
+| 23 | W2 Task 7 | docs/ui-catalog-connectivity.md |
