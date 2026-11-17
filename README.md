@@ -27,3 +27,4 @@ Every commit of the week adds one row (newest at the bottom).
 | 18 | W2 Incident 01 | incidents/04-port-conflict.md |
 | 19 | W2 Incident 02 | incidents/05-local-works-remote-fails.md |
 | 20 | W2 Task 4 | docs/vm-networking.md |
+| 21 | W2 Task 5 | docs/dns-resolution.md |
