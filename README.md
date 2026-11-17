@@ -34,3 +34,4 @@ Every commit of the week adds one row (newest at the bottom).
 | 25 | W2 Task 8 | docs/network-architecture-v1.md + diagram |
 | 26 | W2 Task 9 | runbooks/application-connectivity.md |
 | 27 | W2 Task 10 | docs/command-notes.md |
+| 28 | W2 Task 11 | docs/week-02-learning-log.md |
