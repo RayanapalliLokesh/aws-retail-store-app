@@ -1,8 +1,33 @@
-# Retail Store DevOps - Week 1
+# Retail Store DevOps - Weeks 1 and 2
 Operating and troubleshooting the AWS Retail Store sample application (v1.3.0) on Linux.
-Runs on Ubuntu 24.04 LTS (22.04 also works); every set-up script uses apt-get and the Ubuntu package names
-directly.
-Current stage: application source v1.3.0 imported into app/src.
+Runs on an Ubuntu 26.04 VM in VirtualBox (NAT). No sudo is needed: JDK 21 and Go 1.24 are unpacked
+under `~/.local/opt`; the Catalog database runs in Docker.
+
+**Current stage:** Week 1 (Linux operations) and Week 2 (networking) are complete. UI and Catalog run
+directly on Ubuntu, Catalog uses MariaDB, and six incidents are documented with evidence.
+Open items that need the Windows host or sudo are listed at the end of `docs/week-02-learning-log.md`.
+
+## Run it
+```bash
+cd app/src/catalog && go build -o ../../bin/catalog . && cd -     # once
+cd app/src/ui && ./mvnw -DskipTests package && cd -                # once
+export CATALOG_DB_PASSWORD='...'          # typed in the terminal, never stored in a file
+./scripts/run-catalog-db.sh               # MariaDB on 127.0.0.1:3306
+./scripts/run-catalog.sh                  # Catalog on :8081
+./scripts/run-ui.sh                       # UI on 0.0.0.0:8080 -> http://localhost:8080
+python3 scripts/health_check.py           # HEALTHY / UNHEALTHY with timestamps
+./scripts/stop-all.sh
+```
+
+## Where things are
+| Folder | Content |
+|---|---|
+| `docs/` | application overview, architecture, request flows, Linux and networking notes, learning logs |
+| `incidents/` | 01-06: process down, port, disk, port conflict, local-works-remote-fails, UI->Catalog |
+| `runbooks/` | application unavailable, application connectivity |
+| `diagrams/` | application architecture V1, network architecture V1 (SVG source + PNG) |
+| `scripts/` | start/stop scripts, `health_check.py`, `remote-client-test.sh`, git pre-commit hook |
+
 ## Progress
 Every commit of the week adds one row (newest at the bottom).
 | # | Done in | What was added |
@@ -35,3 +60,4 @@ Every commit of the week adds one row (newest at the bottom).
 | 26 | W2 Task 9 | runbooks/application-connectivity.md |
 | 27 | W2 Task 10 | docs/command-notes.md |
 | 28 | W2 Task 11 | docs/week-02-learning-log.md |
+| 29 | W1+W2 | README - current stage, how to run, folder map |
