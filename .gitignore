@@ -1,0 +1,41 @@
+# build outputs
+# JavaScript dependencies downloaded by yarn (Checkout, Task 4 Part C)
+node_modules/
+# compiled JavaScript produced by "yarn build"
+dist/
+# Maven build output of Cart, Orders and UI
+target/
+# the Catalog binary built with "go build" in Task 4 Step B4
+app/bin/
+# any packaged Java application ...
+*.jar
+# ... except the Maven wrapper that ships with the source (./mvnw needs it in a fresh clone)
+!.mvn/wrapper/maven-wrapper.jar
+# secrets and local config
+# real environment files with passwords must never reach GitHub
+.env
+*.local.env
+# ... except the sample file that ships with the upstream source (it holds only TEST=testing123)
+!app/src/checkout/.env
+# private keys and certificates
+*.pem
+# SSH key files (id_ed25519, id_rsa ...) - anchored to the repository root and to .ssh folders,
+# so no source file of the application that happens to start with "id_" is hidden
+/id_*
+**/.ssh/
+# editor / OS noise
+.vscode/
+.idea/
+# vim swap files
+*.swp
+.DS_Store
+# big or generated files
+# logs, e.g. health_check.log written by Task 12
+*.log
+# disk images, e.g. the log filesystem of Task 8
+*.img
+# core dumps (anchored, so source files such as core.ts are never hidden)
+/core
+/core.[0-9]*
+# Python bytecode cache
+__pycache__/

@@ -1,0 +1,25 @@
+#!/bin/bash
+# scripts/git-hooks/pre-commit - refuse a commit whose staged changes contain a secret.
+# Enabled once per clone: git config core.hooksPath scripts/git-hooks
+# Checks ADDED lines only, outside app/ (the unmodified upstream source has its own sample values)
+# and outside scripts/git-hooks/ (this file contains the patterns themselves).
+set -uo pipefail
+# 1. patterns: PASSWORD= followed by a real value (a ${...} placeholder or **** mask is fine),
+# SQL with a literal password, -p'...' on a command line, private keys, AWS and GitHub tokens
+pattern="PASSWORD=['\"]?[^[\$'\"{*.<\\ /)]|IDENTIFIED BY '[^\$]|-p'[^\$.]|BEGIN [A-Z ]*PRIVATE KEY|AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9]{36}"
+hits=$(git diff --cached -U0 --no-color -- . ':(exclude)app' ':(exclude)scripts/git-hooks' | grep -E '^\+' \
+  | grep -vE '^\+\+\+ ' | grep -nE "$pattern")
+if [ -n "$hits" ]; then
+ printf '%s\n' "$hits" | sed -E 's/(PASSWORD=).*/\1<hidden>/' >&2
+ echo "pre-commit: a staged line looks like a secret. Commit refused (use a \${...} placeholder instead)." >&2
+ exit 1
+fi
+# 2. the real values typed in this terminal must not appear anywhere in the staged changes
+for v in CATALOG_DB_PASSWORD ORDERS_DB_PASSWORD RABBITMQ_PASSWORD DB_PASSWORD; do
+ val=${!v:-}
+ if [ -n "$val" ] && git diff --cached --no-color | grep -qF -- "$val"; then
+ echo "pre-commit: the real value of $v is in the staged changes. Commit refused." >&2
+ exit 1
+ fi
+done
+exit 0
