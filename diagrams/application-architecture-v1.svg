@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640" font-family="DejaVu Sans, Arial, sans-serif" font-size="14">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#333"/></marker>
+    <marker id="ao" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#c25e00"/></marker>
+  </defs>
+  <rect width="1000" height="640" fill="#ffffff"/>
+  <text x="20" y="32" font-size="20" font-weight="bold">Retail Store - Application Architecture V1 (application view, not AWS)</text>
+  <text x="20" y="54" font-size="12" fill="#555">Source: app/src (v1.3.0) docker-compose files and service code.  Solid = synchronous HTTP/REST.  Dashed orange = asynchronous messaging.</text>
+
+  <!-- user + ui -->
+  <rect x="40" y="280" width="110" height="50" rx="25" fill="#eee" stroke="#333"/><text x="95" y="310" text-anchor="middle">User</text>
+  <rect x="220" y="265" width="150" height="80" rx="6" fill="#dbe9f9" stroke="#2b6cb0"/>
+  <text x="295" y="295" text-anchor="middle" font-weight="bold">UI</text><text x="295" y="315" text-anchor="middle" font-size="12">Java / Spring Boot</text><text x="295" y="332" text-anchor="middle" font-size="12">:8080</text>
+  <line x1="150" y1="305" x2="218" y2="305" stroke="#333" marker-end="url(#a)"/><text x="160" y="296" font-size="11">HTTP</text>
+
+  <!-- services column -->
+  <g font-size="12">
+  <rect x="470" y="80" width="170" height="70" rx="6" fill="#e3f4e1" stroke="#2f855a"/><text x="555" y="108" text-anchor="middle" font-weight="bold" font-size="14">Catalog</text><text x="555" y="126" text-anchor="middle">Go / Gin</text><text x="555" y="142" text-anchor="middle">:8080 (8081 on my VM)</text>
+  <rect x="470" y="210" width="170" height="70" rx="6" fill="#e3f4e1" stroke="#2f855a"/><text x="555" y="238" text-anchor="middle" font-weight="bold" font-size="14">Cart</text><text x="555" y="256" text-anchor="middle">Java / Spring Boot</text><text x="555" y="272" text-anchor="middle">:8080</text>
+  <rect x="470" y="340" width="170" height="70" rx="6" fill="#e3f4e1" stroke="#2f855a"/><text x="555" y="368" text-anchor="middle" font-weight="bold" font-size="14">Checkout</text><text x="555" y="386" text-anchor="middle">Node.js / NestJS</text><text x="555" y="402" text-anchor="middle">:8080</text>
+  <rect x="470" y="490" width="170" height="70" rx="6" fill="#e3f4e1" stroke="#2f855a"/><text x="555" y="518" text-anchor="middle" font-weight="bold" font-size="14">Orders</text><text x="555" y="536" text-anchor="middle">Java / Spring Boot</text><text x="555" y="552" text-anchor="middle">:8080</text>
+  </g>
+  <!-- ui -> services -->
+  <path d="M370,280 L468,118" stroke="#333" fill="none" marker-end="url(#a)"/><text x="385" y="190" font-size="11">GET /catalog/products</text>
+  <path d="M370,295 L468,245" stroke="#333" fill="none" marker-end="url(#a)"/><text x="392" y="258" font-size="11">/carts</text>
+  <path d="M370,315 L468,372" stroke="#333" fill="none" marker-end="url(#a)"/><text x="392" y="360" font-size="11">/checkout</text>
+  <path d="M370,330 L468,522" stroke="#333" fill="none" marker-end="url(#a)"/><text x="380" y="450" font-size="11">/orders (history)</text>
+  <!-- checkout -> orders -->
+  <path d="M555,410 L555,488" stroke="#333" fill="none" marker-end="url(#a)"/><text x="562" y="455" font-size="11">POST /orders on submit</text>
+
+  <!-- datastores -->
+  <g font-size="12">
+  <rect x="740" y="85" width="210" height="60" rx="6" fill="#fdf2d0" stroke="#b7791f"/><text x="845" y="110" text-anchor="middle" font-weight="bold">Catalog DB</text><text x="845" y="128" text-anchor="middle">MySQL / MariaDB 10.9 :3306</text>
+  <rect x="740" y="215" width="210" height="60" rx="6" fill="#fdf2d0" stroke="#b7791f"/><text x="845" y="240" text-anchor="middle" font-weight="bold">Cart store</text><text x="845" y="258" text-anchor="middle">DynamoDB (local :8000)</text>
+  <rect x="740" y="345" width="210" height="60" rx="6" fill="#fdf2d0" stroke="#b7791f"/><text x="845" y="370" text-anchor="middle" font-weight="bold">Checkout cache</text><text x="845" y="388" text-anchor="middle">Redis 6 :6379 (session state)</text>
+  <rect x="740" y="470" width="210" height="50" rx="6" fill="#fdf2d0" stroke="#b7791f"/><text x="845" y="490" text-anchor="middle" font-weight="bold">Orders DB</text><text x="845" y="507" text-anchor="middle">PostgreSQL :5432</text>
+  <rect x="740" y="545" width="210" height="55" rx="6" fill="#fde2cf" stroke="#c25e00"/><text x="845" y="568" text-anchor="middle" font-weight="bold">Message broker</text><text x="845" y="586" text-anchor="middle">RabbitMQ :5672</text>
+  </g>
+  <line x1="640" y1="115" x2="738" y2="115" stroke="#333" marker-end="url(#a)"/><text x="655" y="108" font-size="11">SQL</text>
+  <line x1="640" y1="245" x2="738" y2="245" stroke="#333" marker-end="url(#a)"/><text x="650" y="238" font-size="11">DynamoDB API</text>
+  <line x1="640" y1="375" x2="738" y2="375" stroke="#333" marker-end="url(#a)"/><text x="655" y="368" font-size="11">RESP</text>
+  <line x1="640" y1="510" x2="738" y2="495" stroke="#333" marker-end="url(#a)"/><text x="655" y="494" font-size="11">SQL</text>
+  <line x1="640" y1="540" x2="738" y2="572" stroke="#c25e00" stroke-dasharray="6,4" marker-end="url(#ao)"/><text x="600" y="590" font-size="11" fill="#c25e00">async: OrderCreated /</text><text x="600" y="604" font-size="11" fill="#c25e00">OrderCancelled events</text>
+
+  <text x="20" y="625" font-size="11" fill="#555">If an endpoint is not configured, the UI falls back to a built-in mock for that service (MockCatalogService, MockCartsService ...), so a missing dependency can be hidden.</text>
+</svg>
