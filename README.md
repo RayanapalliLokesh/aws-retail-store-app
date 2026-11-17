@@ -9,3 +9,4 @@ Every commit of the week adds one row (newest at the bottom).
 |---|---|---|
 | 1 | Lesson 0.4 | README.md, .gitignore |
 | 2 | Lesson 0.5 | app/src - AWS retail store sample app v1.3.0 (unmodified) |
+| 3 | W1 Task 4 | scripts/ - start/stop UI, Catalog, Catalog DB (password from env only) |
