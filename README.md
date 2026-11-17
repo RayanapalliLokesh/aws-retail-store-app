@@ -12,3 +12,4 @@ Every commit of the week adds one row (newest at the bottom).
 | 3 | W1 Task 4 | scripts/ - start/stop UI, Catalog, Catalog DB (password from env only) |
 | 4 | W1 Task 1 | docs/application-overview.md |
 | 5 | W1 Task 2 | docs/application-architecture-v1.md + diagram |
+| 6 | W1 Task 3 | docs/request-flows.md |
