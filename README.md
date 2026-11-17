@@ -24,3 +24,4 @@ Every commit of the week adds one row (newest at the bottom).
 | 15 | W2 Task 1 | docs/linux-network-baseline.md |
 | 16 | W2 Task 2 | docs/bind-address-experiment.md, scripts/remote-client-test.sh |
 | 17 | W2 Task 3 | docs/listening-sockets.md |
+| 18 | W2 Incident 01 | incidents/04-port-conflict.md |
