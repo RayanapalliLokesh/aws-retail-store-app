@@ -16,3 +16,4 @@ Every commit of the week adds one row (newest at the bottom).
 | 7 | W1 Task 4 | docs/running-ui-and-catalog.md |
 | 8 | W1 Task 6 | incidents/01-application-process-down.md |
 | 9 | W1 Task 7 | incidents/02-port-reachability.md |
+| 10 | W1 Task 8 | incidents/03-disk-utilization.md |
