@@ -18,3 +18,4 @@ Every commit of the week adds one row (newest at the bottom).
 | 9 | W1 Task 7 | incidents/02-port-reachability.md |
 | 10 | W1 Task 8 | incidents/03-disk-utilization.md |
 | 11 | W1 Tasks 5, 9, 10 | docs/linux-troubleshooting.md |
+| 12 | W1 Task 11 | runbooks/application-unavailable.md |
