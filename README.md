@@ -21,3 +21,4 @@ Every commit of the week adds one row (newest at the bottom).
 | 12 | W1 Task 11 | runbooks/application-unavailable.md |
 | 13 | W1 Task 12 | scripts/health_check.py |
 | 14 | W1 Task 13 | docs/week-01-learning-log.md |
+| 15 | W2 Task 1 | docs/linux-network-baseline.md |
